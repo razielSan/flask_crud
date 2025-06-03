@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Hover
+{% endblock title %}
+
+
+{% block body %}
+    <h1>Hover text below</h1>
+
+    <div sytle="font-size: 200%">
+        <span
+            hx-post="{{ url_for("examples.hover") }}" 
+            hx-trigger="mouseenter" 
+            hx-swap="outerHTML" 
+        >
+            Hover me!
+        </span>
+    </div>
+
+    {% include "examples/components/_footer.html" %}
+{% endblock body %}

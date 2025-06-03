@@ -11,8 +11,10 @@
     <button hx-post="{{ url_for("examples.ping") }}">
         Send Ping
     </button>
-    <hr>
-    <div>
-        <a href="{{ url_for("examples.examples") }}">Back to examples</a>
-    </div>
+    <p>
+        <button hx-post="{{ url_for("examples.ping") }}" hx-trigger="click[ctrlKey]">
+            Send Ping (only with ctrl+click)
+        </button>
+    </p>
+    {% include "examples/components/_footer.html" %}
 {% endblock body %}
