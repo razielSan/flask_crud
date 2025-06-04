@@ -10,3 +10,5 @@
         - 'hx-trigger="mouseenter"'
         - 'hx-trigger="click[ctrlKey]"'
         - 'hx-swap="outerHTML"'
+
+4. - Clicker via HTMX

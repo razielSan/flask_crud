@@ -1,0 +1,16 @@
+<h3>Clicker</h3>
+<div>
+    <div id="clicked-times">
+        {% include "clicker/components/_clicker-count.html" %}
+    </div>
+    <button
+        hx-post="{{ url_for('clicker.click') }}"
+        hx-target="#clicked-times"
+    >Click!</button>    
+</div>
+
+<h3>Form Clicker</h3>
+<form action="{{ url_for('clicker.click') }}" method="POST" name="value">
+    <div>Clicked Times {{ form_count }}</div>
+    <button type="submit">Click!</button>
+</form>

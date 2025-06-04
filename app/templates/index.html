@@ -6,12 +6,14 @@
 
 
 {% block body %}
-  <h1>Hello User</h1>
-
   <h2>
     <a href="{{ url_for('examples.examples') }}">Examples</a>
   </h2>
-  <h2>
+  <span
+    hx-trigger="load"
+    hx-get="{{ url_for('clicker.click') }}"
+    hx-swap="outerHTML">Click</span>
+  <h4>
     <a href="{{ url_for('clicker.click') }}">Clicker</a>
-  </h2>
+  </h4s>
 {% endblock body %}
