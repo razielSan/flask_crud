@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Clicker
+{% endblock title %}
+
+
+{% block body %}
+    <h3>Clicker</h3>
+
+
+    <form action="{{ url_for("clicker.click") }}" method="POST">
+        <div>Clicked Times: {{ count }}</div>
+        <button type="sumbit">Click</button>
+    </form>
+    {% include "components/_footer.html" %}
+{% endblock body %}

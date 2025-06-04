@@ -6,9 +6,12 @@
 
 
 {% block body %}
-  Hello User
+  <h1>Hello User</h1>
 
   <h2>
     <a href="{{ url_for('examples.examples') }}">Examples</a>
+  </h2>
+  <h2>
+    <a href="{{ url_for('clicker.click') }}">Clicker</a>
   </h2>
 {% endblock body %}

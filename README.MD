@@ -2,7 +2,11 @@
 
 2. Установка HTMX
 
-3.  Работа с HTMX
-    - 'hx-trigger="mouseenter"'
-    - 'hx-trigger="click[ctrlKey]"'
-    - 'hx-swap="outerHTML"'
+3.  - Ping
+        - on click
+        - on ctrl + click
+    - Hover
+    - HTMX
+        - 'hx-trigger="mouseenter"'
+        - 'hx-trigger="click[ctrlKey]"'
+        - 'hx-swap="outerHTML"'

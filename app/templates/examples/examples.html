@@ -15,12 +15,5 @@
         </li>
     </ul>
 
-    <hr>
-    <div>
-        <ul>
-            <li>
-                <a href="{{ url_for("index.index")}}">Back to index</a>
-            </li>
-        </ul>
-    </div>
+    {% include "components/_footer.html" %}
 {% endblock body %}
