@@ -12,3 +12,6 @@
         - 'hx-swap="outerHTML"'
 
 4. - Clicker via HTMX
+
+5. - Embed clicker into index via HTMX
+
