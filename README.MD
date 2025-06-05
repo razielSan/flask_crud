@@ -15,3 +15,4 @@
 
 5. - Embed clicker into index via HTMX
 
+6. - Handle HTMX boost
