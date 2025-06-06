@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request, redirect
 router = Blueprint("examples", __name__)
 
 
-@router.route("/examples", endpoint="examples")
+@router.route("/", endpoint="examples")
 def examples_list():
     return render_template("examples/examples.html")
 

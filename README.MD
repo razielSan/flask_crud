@@ -16,3 +16,8 @@
 5. - Embed clicker into index via HTMX
 
 6. - Handle HTMX boost
+
+7. - Список товаров
+   - Создание через форму
+
+8. - Создание через HTMX форму + подгрузка списка

@@ -1,0 +1,5 @@
+<ul id="products-list">
+    {% for product in list_products%}  
+        <li>{{ product.name }} ${{ product.price }}</li>
+    {% endfor %}
+</ul>

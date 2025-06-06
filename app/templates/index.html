@@ -10,7 +10,10 @@
     <a href="{{ url_for('examples.examples') }}">Examples</a>
   </h2>
   <h3>
-    <a href="{{ url_for('products.get_product_list') }}">Products</a>
+    <a href="{{ url_for('products.get_product_list_form') }}">Products (on form)</a>
+  </h3>
+  <h3>
+    <a href="{{ url_for('products.get_product_list') }}">Products (on HTMX)</a>
   </h3>
   <span
     hx-trigger="load"
