@@ -21,10 +21,11 @@ def create_product():
     if name == "fuck":
         raise Exception("Плохой запрос")
 
-    product_storage.add(name=name, price=price)
+    product = product_storage.add(name=name, price=price)
     return render_template(
-        "products/components/_products-list.html",
-        list_products=product_storage.get_list,
+        "products/components/_item.html",
+        product=product,
+        # list_products=product_storage.get_list,
     )
 
 
