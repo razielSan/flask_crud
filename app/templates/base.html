@@ -16,7 +16,28 @@
     {% block footer %}
     {% endblock footer %}
     
-    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+    <script 
+    src="https://unpkg.com/htmx.org@2.0.4" 
+    integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+    crossorigin="anonymous">
+    </script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", (event) => {
+          document.body.addEventListener('htmx:beforeSwap', function (evt) {
+            if (evt.detail.xhr.status === 422) {
+              // allow 422 responses to swap
+              // as we are using this as a signal
+              // that a form was submitted with bad data
+              // and want to rerender with the errors
+              //
+              // set isError to `false`
+              // to avoid error logging in console
+              evt.detail.shouldSwap = true;
+              evt.detail.isError = false;
+            }
+          });
+        });
+      </script>
 
 </body>
 </html>

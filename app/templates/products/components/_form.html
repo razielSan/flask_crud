@@ -1,0 +1,15 @@
+<form 
+    id="create-product"
+    hx-post="{{ url_for('products.create_product') }}"
+    hx-swap="outerHTML"
+    >
+    <p><label for="name">Имя: </label><input type="text" name="name" id="product-name" required></p>
+    <p><label for="price">Цена: </label><input type="text" name="price" id="product-price" min="1" max="9999999" required></p>
+    {% if error %}
+        <div style="color: red;">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <button type="submit">Add</button>
+</form>
