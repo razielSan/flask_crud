@@ -31,3 +31,7 @@
 
 10. - Добавлние заголовка 'hx-headers'
     - CSRF exempt 
+
+11. - Удаление товара
+    - Bыбор по ближайшему тегу: "hx-target="contests li"
+    - Bыбор по ближайшему классу: "hx-target="contests .product-item"
