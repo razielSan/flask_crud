@@ -39,6 +39,9 @@ class ProductStorage:
     def get_check_name_is_exists(self, name: str):
         return name in self.get_set_names
 
+    def delete_product_by_id(self, id: int):
+        self.products.pop(id)
+ 
 
 product_storage = ProductStorage()
 product_storage.add("Laptop", price=123)

@@ -1,4 +1,12 @@
-from flask import Blueprint, request, render_template, redirect, url_for, make_response
+from flask import (
+    Blueprint,
+    Response,
+    request,
+    render_template,
+    redirect,
+    url_for,
+    make_response,
+)
 
 from views.products.crud import product_storage
 from werkzeug.exceptions import BadRequest, HTTPException
@@ -30,7 +38,7 @@ def create_product():
             "products/components/_form-and-item-oob.html",
             product=product,
             list_products=product_storage.get_list,
-            form=ProductForm(formdata=None)
+            form=ProductForm(formdata=None),
         )
     else:
         render = render_template(
@@ -38,6 +46,13 @@ def create_product():
             form=form,
         )
         return make_response(render, 422)
+
+
+
+@router.delete("/product/<int:id>")
+def delete_product(id: int):
+    product_storage.delete_product_by_id(id)
+    return Response(status=204)
 
 
 @router.get("/form")

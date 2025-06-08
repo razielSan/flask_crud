@@ -1,2 +1,3 @@
-d = {1: 2, 3: 4}
-print([value for value in d.values()])
+d = {1: 'name', 2: "value", 3:  "age"}
+
+d.pop(s)

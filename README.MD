@@ -30,4 +30,4 @@
    - Обработка фориы Flask-WTF для добавления товара
 
 10. - Добавлние заголовка 'hx-headers'
-    - CSRF exempt
+    - CSRF exempt 
