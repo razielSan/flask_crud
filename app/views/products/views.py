@@ -2,38 +2,42 @@ from flask import Blueprint, request, render_template, redirect, url_for, make_r
 
 from views.products.crud import product_storage
 from werkzeug.exceptions import BadRequest, HTTPException
+from views.products.forms import ProductForm
 
 router = Blueprint("products", __name__)
 
 
 @router.get("/")
 def get_product_list():
+    form = ProductForm()
+
     return render_template(
         "products/list.html",
         list_products=product_storage.get_list,
+        form=form,
     )
 
 
 @router.post("/")
 def create_product():
-    price = request.form.get("price")
-    name = request.form.get("name")
-    if not price.isdigit():
+    form = ProductForm()
+    if form.validate_on_submit():
+        product = product_storage.add(
+            name=form.name.data,
+            price=form.price.data,
+        )
+        return render_template(
+            "products/components/_form-and-item-oob.html",
+            product=product,
+            list_products=product_storage.get_list,
+            form=ProductForm(formdata=None)
+        )
+    else:
         render = render_template(
             "products/components/_form.html",
-            error="product price should be integer",
+            form=form,
         )
         return make_response(render, 422)
-
-    if name == "fuck":
-        raise BadRequest("Плохой запрос")
-
-    product = product_storage.add(name=name, price=price)
-    return render_template(
-        "products/components/_form-and-item-oob.html",
-        product=product,
-        list_products=product_storage.get_list,
-    )
 
 
 @router.get("/form")

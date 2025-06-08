@@ -29,8 +29,15 @@ class ProductStorage:
         return product
 
     @property
+    def get_set_names(self):
+        return {product.name for product in self.products.values()}
+
+    @property
     def get_list(self):
         return [product for product in self.products.values()]
+
+    def get_check_name_is_exists(self, name: str):
+        return name in self.get_set_names
 
 
 product_storage = ProductStorage()
