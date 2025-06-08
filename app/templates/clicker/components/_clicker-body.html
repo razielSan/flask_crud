@@ -6,11 +6,14 @@
     <button
         hx-post="{{ url_for('clicker.click') }}"
         hx-target="#clicked-times"
+        hx-headers='{"X-CSRF-TOKEN": "{{ csrf_token() }}"}'
     >Click!</button>    
 </div>
 
 <h3>Form Clicker</h3>
 <form action="{{ url_for('clicker.click') }}" method="POST" name="value">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <div>Clicked Times {{ form_count }}</div>
-    <button type="submit">Click!</button>
+    <button type="submit"
+     >Click!</button>
 </form>
