@@ -1,0 +1,11 @@
+<button 
+    style="cursor: pointer;"
+    hx-delete="{{ url_for('products.delete_product', id=product.id) }}"    
+    hx-headers='{"X-CSRF-TOKEN": "{{ csrf_token() }}"}'
+    hx-target="closest .product-item"
+    hx-swap="outerHTML swap:3000ms"
+    hx-indicator="#product-{{ product.id }}"
+    >
+    <img width="15px" src="{{ url_for('static', filename='images/trash.png') }}" alt="img">
+</button>
+{% include "components/_loading-animation.html" %}

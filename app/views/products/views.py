@@ -1,3 +1,4 @@
+from time import sleep
 from flask import (
     Blueprint,
     Response,
@@ -51,6 +52,10 @@ def create_product():
 
 @router.delete("/product/<int:id>")
 def delete_product(id: int):
+    # d ={}
+    # for i in range(100000):
+    #     d[i] = i * i
+    sleep(2)
     product_storage.delete_product_by_id(id)
     return Response(status=204)
 
