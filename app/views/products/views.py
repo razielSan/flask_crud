@@ -10,7 +10,7 @@ from flask import (
 )
 
 from views.products.crud import product_storage
-from werkzeug.exceptions import BadRequest, HTTPException
+from werkzeug.exceptions import BadRequest, HTTPException, NotFound
 from views.products.forms import ProductForm
 
 router = Blueprint("products", __name__)
@@ -49,15 +49,17 @@ def create_product():
         return make_response(render, 422)
 
 
-
-@router.delete("/product/<int:id>")
-def delete_product(id: int):
-    # d ={}
-    # for i in range(100000):
-    #     d[i] = i * i
-    sleep(2)
-    product_storage.delete_product_by_id(id)
-    return Response(status=204)
+@router.get("/<int:product_id>")
+def get_product_detail(product_id):
+    product = product_storage.get_product_by_id(product_id)
+    form = ProductForm()
+    if not product:
+        raise NotFound(f"Product with id {product_id} does not exist")
+    return render_template(
+        "products/product-detail.html",
+        product=product,
+        form=form,
+    )
 
 
 @router.get("/form")
@@ -74,3 +76,13 @@ def create_product_form():
     name = request.form.get("name")
     product_storage.add(name=name, price=price)
     return redirect(url_for("products.get_product_list_form"))
+
+
+@router.delete("/<int:id>")
+def delete_product(id: int):
+    # d ={}
+    # for i in range(100000):
+    #     d[i] = i * i
+    sleep(2)
+    product_storage.delete_product_by_id(id)
+    return Response(status=204)

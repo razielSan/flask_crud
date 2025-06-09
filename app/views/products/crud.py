@@ -41,6 +41,10 @@ class ProductStorage:
 
     def delete_product_by_id(self, id: int):
         self.products.pop(id)
+
+    def get_product_by_id(self, id: int):
+        product = self.products.get(id)
+        return product
  
 
 product_storage = ProductStorage()

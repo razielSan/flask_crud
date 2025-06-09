@@ -33,5 +33,11 @@
     - CSRF exempt 
 
 11. - Удаление товара
-    - Bыбор по ближайшему тегу: "hx-target="contests li"
-    - Bыбор по ближайшему классу: "hx-target="contests .product-item"
+    - Выбор цели
+      - Bыбор по ближайшему тегу: "hx-target="contests li"
+      - Bыбор по ближайшему классу: "hx-target="contests .product-item"
+   - Анимации
+      - Загрузка ".htmx-request"
+      - Замена ".htmx-swapping"
+
+   
