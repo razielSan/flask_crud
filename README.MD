@@ -40,4 +40,11 @@
       - Загрузка ".htmx-request"
       - Замена ".htmx-swapping"
 
+12. - Обновление товара
+      - Put запрос
+      - Обработка ошибок (форма)
+
+13. - HTMX push url
+    - "hx-target='body'"
+    
    
