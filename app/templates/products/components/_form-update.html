@@ -1,13 +1,12 @@
 {% from 'macros/_error_list.html' import errors_list %}
 
 <form 
-    id="create-product"
-    hx-post="{{ url_for('products.create_product') }}"
+    id="update-product"
+    hx-put="{{ url_for('products.update_product', product_id=product.id) }}"
     hx-swap="outerHTML"
     novalidate
     >
 
    {% include "products/components/_form-body.html" %}
-   {{ form.submit}}
-    <button type="submit">Add</button>
+    {{ form.update_submit }}
 </form>

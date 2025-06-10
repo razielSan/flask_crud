@@ -8,9 +8,8 @@
     <h1>Product #{{ product.id }} detail </h1>
 
     <div>
-        {% include "products/components/_form.html" %}
+        {% include "products/components/_form-update.html" %}
     </div>
-
     <hr>
     <div>
         <a href="{{ url_for('products.get_product_list') }}">

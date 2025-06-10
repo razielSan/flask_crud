@@ -1,0 +1,14 @@
+{{ form.hidden_tag() }}
+
+<div>
+    {{ form.name.label }} {{ form.name  }}
+    {% if form.name.errors %}
+        {{ errors_list(form.name.errors)}}
+    {% endif %}
+</div>
+<div>
+    {{ form.price.label }} {{ form.price }}
+    {% if form.price.errors %}
+        {{ errors_list(form.price.errors)}}
+    {% endif %}
+</div>

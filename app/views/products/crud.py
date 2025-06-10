@@ -42,10 +42,19 @@ class ProductStorage:
     def delete_product_by_id(self, id: int):
         self.products.pop(id)
 
+    def update_product_by_id(self, id: int, name: str, price: int):
+        product = Product(
+            id=id,
+            name=name,
+            price=price,
+        )
+        self.products[id] = product
+        return product
+
     def get_product_by_id(self, id: int):
         product = self.products.get(id)
         return product
- 
+
 
 product_storage = ProductStorage()
 product_storage.add("Laptop", price=123)

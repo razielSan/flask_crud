@@ -1,4 +1,7 @@
 from time import sleep
+from dataclasses import asdict
+from http import HTTPStatus
+
 from flask import (
     Blueprint,
     Response,
@@ -8,10 +11,13 @@ from flask import (
     url_for,
     make_response,
 )
+from werkzeug.exceptions import BadRequest, HTTPException, NotFound
+
+HTTPStatus
 
 from views.products.crud import product_storage
-from werkzeug.exceptions import BadRequest, HTTPException, NotFound
 from views.products.forms import ProductForm
+from utils.helpers import get_product
 
 router = Blueprint("products", __name__)
 
@@ -51,14 +57,39 @@ def create_product():
 
 @router.get("/<int:product_id>")
 def get_product_detail(product_id):
-    product = product_storage.get_product_by_id(product_id)
-    form = ProductForm()
-    if not product:
-        raise NotFound(f"Product with id {product_id} does not exist")
+    product = get_product(product_id)
+    form = ProductForm(data=asdict(product))
     return render_template(
         "products/product-detail.html",
         product=product,
         form=form,
+    )
+
+
+@router.put("/<int:product_id>")
+def update_product(product_id):
+    print("Hello")
+    product = get_product(product_id)
+    form = ProductForm(request.form)
+    if not form.validate_on_submit():
+        response = Response(
+            render_template(
+                "products/components/_form-update.html",
+                form=form,
+                product=product,
+            ),
+            status=HTTPStatus.UNPROCESSABLE_ENTITY,
+        )
+        raise HTTPException(response=response)
+    product_storage.update_product_by_id(
+        id=product_id,
+        name=form.name.data,
+        price=form.price.data,
+    )
+    return render_template(
+        "products/components/_form-update.html",
+        form=form,
+        product=product,
     )
 
 
