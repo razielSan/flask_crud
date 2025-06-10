@@ -1,7 +1,7 @@
 {{ form.hidden_tag() }}
 
 <div>
-    {{ form.name.label }} {{ form.name  }}
+    {{ form.name.label }} {{ form.name  }} 
     {% if form.name.errors %}
         {{ errors_list(form.name.errors)}}
     {% endif %}

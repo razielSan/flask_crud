@@ -29,5 +29,5 @@ class ProductForm(FlaskForm):
         validators=[DataRequired(), NumberRange(max=999_999, min=1)],
     )
 
-    sumbit = SubmitField(label="Add product")
+    submit = SubmitField(label="Add product")
     update_submit = SubmitField(label="Update product")

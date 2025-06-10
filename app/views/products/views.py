@@ -114,6 +114,8 @@ def delete_product(id: int):
     # d ={}
     # for i in range(100000):
     #     d[i] = i * i
-    sleep(2)
+    sleep(1)
     product_storage.delete_product_by_id(id)
-    return Response(status=204)
+    if request.args.get("redirect"):
+        return redirect(url_for("products.get_product_list"), code=HTTPStatus.SEE_OTHER)
+    return Response(status=HTTPStatus.NO_CONTENT)

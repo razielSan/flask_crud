@@ -10,7 +10,9 @@
     <div>
         {% include "products/components/_form-update.html" %}
     </div>
+    {% include "products/components/_delete_button-details.html" %}
     <hr>
+
     <div>
         <a href="{{ url_for('products.get_product_list') }}">
             Back to products list
