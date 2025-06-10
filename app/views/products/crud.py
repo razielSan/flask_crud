@@ -1,5 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Dict
+import random
+from string import ascii_letters
 
 
 @dataclass
@@ -57,6 +59,11 @@ class ProductStorage:
 
 
 product_storage = ProductStorage()
-product_storage.add("Laptop", price=123)
-product_storage.add("Desctop", price=43)
-product_storage.add("Smartphone", price=443)
+
+name = "Laptop"
+for i in range(1, 100):
+    random_suffix = "".join(random.choices(ascii_letters, k=4))
+    product_storage.add(
+        name=f"product_{i:03d} {random_suffix}",
+        price=random.randint(1, 9) * random.choice([10, 50 , 100, 200, 400, 600])
+    )
