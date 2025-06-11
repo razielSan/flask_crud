@@ -1,0 +1,14 @@
+{% include "products/components/_only-items.html" %}
+
+
+{% if next_page %}
+
+    <span 
+        hx-swap="outerHTML"
+        hx-trigger="revealed"
+        hx-get="{{ url_for("products.get_product_list", only_items=True, page=next_page, per_page=per_page) }}"    
+    >
+        {% include "components/_loading-animation.html" %}
+    </span>
+
+{% endif %}

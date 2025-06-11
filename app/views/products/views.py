@@ -21,15 +21,33 @@ from utils.helpers import get_product
 
 router = Blueprint("products", __name__)
 
+PAGE_DEFAULT = 1
+PER_PAGE_DEFAULT = 10
+
 
 @router.get("/")
 def get_product_list():
     form = ProductForm()
 
+    all_products = product_storage.get_list
+    page = request.args.get("page", PAGE_DEFAULT, type=int)
+    per_page = request.args.get("per_page", PER_PAGE_DEFAULT, type=int)
+    to_idx = page * per_page
+    from_idx = to_idx - per_page
+    products = all_products[from_idx:to_idx]
+
+    next_page = to_idx < len(all_products) and page + 1
+
+    template_name = "products/list.html"
+    if request.args.get("only_items"):
+        template_name = "products/components/_only-items-reveal.html"
+
     return render_template(
-        "products/list.html",
-        list_products=product_storage.get_list,
+        template_name,
+        list_products=products,
         form=form,
+        next_page=next_page,
+        per_page=per_page,
     )
 
 

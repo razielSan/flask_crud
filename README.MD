@@ -46,5 +46,6 @@
 
 13. - HTMX push url
     - "hx-target='body'"
+    - "hx-confirm"
     
    
