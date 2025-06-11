@@ -1,0 +1,32 @@
+<ul id="products-list">
+    {% include "products/components/_only-items.html" %}
+    {% if prev_page %}
+        <button
+            hx-get="{{ url_for("products.get_product_list", page=prev_page, per_page=per_page) }}"
+            hx-push-url="true"
+            hx-target="#products-list"
+            hx-swap="outerHTML"
+        >
+        &lt;&lt; Page {{ prev_page }} 
+        {% include "components/_loading-animation.html" %}
+        </button>
+    
+    {% endif %}
+
+    
+    {% if next_page %}
+        <span style="margin: 0 20px"></span>
+    
+        <button
+            hx-get="{{ url_for("products.get_product_list", page=next_page, per_page=per_page) }}"
+            hx-push-url="true"
+            hx-target="#products-list"
+            hx-swap="outerHTML"
+        >
+        {% include "components/_loading-animation.html" %}
+        Page {{ next_page }} &gt;&gt;
+        </button>
+    
+    {% endif %}
+  
+</ul>

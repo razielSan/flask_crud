@@ -13,6 +13,8 @@ from flask import (
 )
 from werkzeug.exceptions import BadRequest, HTTPException, NotFound
 
+from utils.helpers import is_backround_request
+
 HTTPStatus
 
 from views.products.crud import product_storage
@@ -37,10 +39,11 @@ def get_product_list():
     products = all_products[from_idx:to_idx]
 
     next_page = to_idx < len(all_products) and page + 1
+    prev_page = page > 1 and page - 1
 
     template_name = "products/list.html"
-    if request.args.get("only_items"):
-        template_name = "products/components/_only-items-reveal.html"
+    if is_backround_request and request.headers.get("Hx-taget") == "products-list":
+        template_name = "products/components/_items-list-single-page.html"
 
     return render_template(
         template_name,
@@ -48,6 +51,7 @@ def get_product_list():
         form=form,
         next_page=next_page,
         per_page=per_page,
+        prev_page=prev_page,
     )
 
 
